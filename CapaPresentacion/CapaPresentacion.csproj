@@ -376,6 +376,7 @@
     <Content Include="assets\pluginzero\toastr\toastr.min.css" />
     <Content Include="assets\pluginzero\toastr\toastr.min.js" />
     <Content Include="Inicio.aspx" />
+    <Content Include="js\PageCarreras.js" />
     <Content Include="js\PageEstudiantes.js" />
     <Content Include="js\PageUsuario.js" />
     <Content Include="PageCarreras.aspx" />
