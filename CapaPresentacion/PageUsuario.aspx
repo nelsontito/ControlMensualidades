@@ -19,7 +19,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="titulo" runat="server">
     Registro Usuarios...
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">ç
+<asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">

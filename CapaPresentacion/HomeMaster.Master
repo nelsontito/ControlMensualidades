@@ -76,7 +76,7 @@
                                 <a href="#" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
                                     <img src="assets/images/users/avatar-1.jpg" alt="user-img" id="imgUsuarioMe" class="rounded-circle">
                                     <span class="profile-username">
-                                        <strong id="nombreusuariome">Jose Luis</strong>
+                                        <strong id="nombreusuariome">ControlMensualidades</strong>
                                         <br />
                                         <small id="rolusuariome">Developer</small>
                                     </span>
@@ -131,6 +131,12 @@
                                 <a href="PageUsuario.aspx" class="waves-effect"><i class="mdi mdi-calendar"></i><span>Usuarios</span></a>
                             </li>
 
+                            <li>
+                                <a href="PageEstudiantes.aspx" class="waves-effect"><i class="mdi mdi-calendar"></i><span>Estudiantes</span></a>
+                            </li>
+                            <li>
+                                <a href="PageCarreras.aspx" class="waves-effect"><i class="mdi mdi-calendar"></i><span>Carreras</span></a>
+                            </li>
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-table"></i><span>Unds Educativas </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
                                 <ul class="list-unstyled">

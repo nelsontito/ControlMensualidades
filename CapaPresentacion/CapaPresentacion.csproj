@@ -376,7 +376,10 @@
     <Content Include="assets\pluginzero\toastr\toastr.min.css" />
     <Content Include="assets\pluginzero\toastr\toastr.min.js" />
     <Content Include="Inicio.aspx" />
+    <Content Include="js\PageEstudiantes.js" />
     <Content Include="js\PageUsuario.js" />
+    <Content Include="PageCarreras.aspx" />
+    <Content Include="PageEstudiantes.aspx" />
     <Content Include="PageUsuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -394,6 +397,20 @@
     </Compile>
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageCarreras.aspx.cs">
+      <DependentUpon>PageCarreras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageCarreras.aspx.designer.cs">
+      <DependentUpon>PageCarreras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageEstudiantes.aspx.cs">
+      <DependentUpon>PageEstudiantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageEstudiantes.aspx.designer.cs">
+      <DependentUpon>PageEstudiantes.aspx</DependentUpon>
     </Compile>
     <Compile Include="PageUsuario.aspx.cs">
       <DependentUpon>PageUsuario.aspx</DependentUpon>
