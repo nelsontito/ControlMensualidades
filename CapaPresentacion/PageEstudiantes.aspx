@@ -167,6 +167,6 @@
 
     <script src="assets/pluginzero/select2/select2.min.js"></script>
 
-    <script src="js/Estudiantes.js?v=<%= DateTime.Now.ToString("yyyyMMddHHmmss") %>" type="text/javascript"></script>
+    <script src="js/PageEstudiantes.js?v=<%= DateTime.Now.ToString("yyyyMMddHHmmss") %>" type="text/javascript"></script>
 
 </asp:Content>

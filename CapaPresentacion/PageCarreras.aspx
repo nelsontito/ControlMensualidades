@@ -23,7 +23,7 @@
                             <div class="form-row align-items-end">
 
                                 <div class="form-group col-sm-7">
-                                    <label for="cboCuestionarioGe">Seleccione Cuestionario</label>
+                                    <label for="cboCuestionarioGe">Seleccione Carrera</label>
                                     <select class="form-control form-control-sm form-new" id="cboCuestionarioGe">
                                     </select>
                                 </div>
