@@ -85,8 +85,8 @@
                                     <input type="text" class="form-control input-sm model" id="txtNroci" name="Nro ci">
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label for="cboUnidadEd">Unidad Ed</label>
-                                    <select class="form-control form-control-sm" id="cboUnidadEd">
+                                    <label for="cboRol">Rol</label>
+                                    <select class="form-control form-control-sm" id="cboRol">
                                     </select>
                                 </div>
 
@@ -111,7 +111,7 @@
                         <div class="col-lg-4">
                             <div class="form-row h-100 d-flex align-items-center justify-content-center">
                                 <div class="form-group col-sm-12 text-center">
-                                    <img id="imgDirectReg" src="assets/images/users/avatar-1.jpg" alt="Foto usuario" class="est-perfil">
+                                    <img id="imgDirectReg" src="Imagenes/images.png" alt="Foto usuario" class="rounded-circle est-perfil">
                                 </div>
                             </div>
                         </div>

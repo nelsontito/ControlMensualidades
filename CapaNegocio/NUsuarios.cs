@@ -30,5 +30,9 @@ namespace CapaNegocio
         {
             return DUsuarios.GetInstance().ListarRoles();
         }
+        public Respuesta<int> GuardarOrEditUsuarios(EUsuarios objeto)
+        {
+            return DUsuarios.GetInstance().GuardarOrEditUsuarios(objeto);
+        }
     }
 }

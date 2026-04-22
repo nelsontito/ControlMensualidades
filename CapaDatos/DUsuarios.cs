@@ -70,5 +70,75 @@ namespace CapaDatos
                 };
             }
         }
+
+        public Respuesta<int> GuardarOrEditUsuarios(EUsuarios oModel)
+        {
+            Respuesta<int> response = new Respuesta<int>();
+            int resultadoCodigo = 0;
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_GuardarOrEditUsuarios", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdUsuario", oModel.IdUsuario);
+                        cmd.Parameters.AddWithValue("@IdRol", oModel.IdRol);
+                        cmd.Parameters.AddWithValue("@NombreUsuario", oModel.NombreUsuario);
+                        cmd.Parameters.AddWithValue("@ApellidosUsuario", oModel.ApellidosUsuario);
+                        cmd.Parameters.AddWithValue("@CiUsuario", oModel.CiUsuario);
+                        cmd.Parameters.AddWithValue("@Correo", oModel.Correo);
+                        // Blindaje contra nulos en la Clave (Si es Update, puede que venga nula. La mandamos vacía para que el SP la ignore)
+                        cmd.Parameters.AddWithValue("@Contrasena", string.IsNullOrEmpty(oModel.Contrasena) ? "" : oModel.Contrasena);
+                        cmd.Parameters.AddWithValue("@FotoUrl", string.IsNullOrEmpty(oModel.FotoUrl) ? "" : oModel.FotoUrl);
+                        cmd.Parameters.AddWithValue("@Estado", oModel.Estado);
+
+                        SqlParameter outputParam = new SqlParameter("@Resultado", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        cmd.Parameters.Add(outputParam);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        resultadoCodigo = Convert.ToInt32(outputParam.Value);
+                    }
+                }
+                response.Data = resultadoCodigo;
+                switch (resultadoCodigo)
+                {
+                    case 1: // Duplicado
+                        response.Estado = false;
+                        response.Valor = "warning";
+                        response.Mensaje = "Ocurrio un problema el Correo o Ci ya existe.";
+                        break;
+
+                    case 2: // Registro Nuevo
+                        response.Estado = true;
+                        response.Valor = "success";
+                        response.Mensaje = "Registrado correctamente.";
+                        break;
+
+                    case 3: // Actualización
+                        response.Estado = true;
+                        response.Valor = "success";
+                        response.Mensaje = "Actualizado correctamente.";
+                        break;
+
+                    case 0: // Error
+                    default:
+                        response.Estado = false;
+                        response.Valor = "error";
+                        response.Mensaje = "No se pudo completar la operación.";
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Estado = false;
+                response.Valor = "error";
+                response.Mensaje = $"Error interno: {ex.Message}";
+            }
+            return response;
+        }
     }
 }
