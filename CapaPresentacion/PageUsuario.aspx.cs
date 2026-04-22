@@ -64,5 +64,11 @@ namespace CapaPresentacion
                 return new Respuesta<int> { Estado = false, Valor = "error", Mensaje = "Error en el servidor: " + ex.Message };
             }
         }
+
+        [WebMethod]
+        public static Respuesta<List<EUsuarios>> ListarUsuarios()
+        {
+            return NUsuarios.GetInstance().usp_ListarUsuarios();
+        }
     }
 }

@@ -140,5 +140,62 @@ namespace CapaDatos
             }
             return response;
         }
+
+        public Respuesta<List<EUsuarios>> usp_ListarUsuarios()
+        {
+            try
+            {
+                List<EUsuarios> rptLista = new List<EUsuarios>();
+
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand comando = new SqlCommand("usp_ListarUsuarios", con))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        
+                        con.Open();
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                rptLista.Add(new EUsuarios
+                                {
+                                    IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
+                                    NombreUsuario = dr["NombreUsuario"].ToString(),
+                                    ApellidosUsuario = dr["ApellidosUsuario"].ToString(),
+                                    CiUsuario = dr["CiUsuario"].ToString(),
+                                    Correo = dr["Correo"].ToString(),
+                                 
+                                    FotoUrl = dr["FotoUrl"].ToString(),
+                                    
+                                    Estado = Convert.ToBoolean(dr["Estado"])
+                                });
+                            }
+                        }
+                    }
+                }
+                return new Respuesta<List<EUsuarios>>()
+                {
+                    Estado = true,
+                    Data = rptLista,
+                    Mensaje = "Lista obtenidos correctamente"
+                };
+            }
+            catch (Exception ex)
+            {
+                // Maneja cualquier error inesperado
+                return new Respuesta<List<EUsuarios>>()
+                {
+                    Estado = false,
+                    Mensaje = "Ocurrió un error: " + ex.Message,
+                    Data = null
+                };
+            }
+        }
     }
+
+
+
+
 }

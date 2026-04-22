@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CapaDatos;
+using CapaEntidad.Entidades;
+using CapaEntidad.Responses;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CapaDatos;
-using CapaEntidad.Entidades;
-using CapaEntidad.Responses;
 
 namespace CapaNegocio
 {
@@ -34,5 +35,14 @@ namespace CapaNegocio
         {
             return DUsuarios.GetInstance().GuardarOrEditUsuarios(objeto);
         }
+
+        public Respuesta<List<EUsuarios>> usp_ListarUsuarios()
+        {
+            return DUsuarios.GetInstance().usp_ListarUsuarios();
+        }
+
     }
 }
+
+
+

@@ -3,6 +3,7 @@ let idEditar = 0;
 
 $(document).ready(function () {
     cargarRoles();
+    listarUsuarios();
 });
 
 function cargarRoles() {
@@ -46,6 +47,89 @@ function cargarRoles() {
         }
     });
 }
+
+
+
+function listarUsuarios() {
+    if ($.fn.DataTable.isDataTable("#tbDatas")) {
+        $("#tbDatas").DataTable().destroy();
+        $('#tbDatas tbody').empty();
+    }
+
+    tablaData = $("#tbDatas").DataTable({
+        responsive: true,
+        "ajax": {
+            "url": 'PageUsuario.aspx/ListarUsuarios',
+            "type": "POST",
+            "contentType": "application/json; charset=utf-8",
+            "dataType": "json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            },
+            "dataSrc": function (json) {
+                if (json.d.Estado) {
+                    return json.d.Data;
+                } else {
+                    return [];
+                }
+            }
+        },
+        "columns": [
+            { "data": "IdUsuario", "visible": false, "searchable": false },
+            {
+                //FullName es una propiedad de solo lectura que tiene Nombres y Apellidos
+                "data": "NombreUsuario",
+                "className": "align-middle",
+                "render": function (data, type, row) {
+                    let colorBorde = '#fff';
+                    let FotoUrl = row.FotoUrl || 'Imagenes/sinimagen.png';
+
+                    return `
+                        <div class="d-flex align-items-center">
+                            <div class="position-relative mr-3">
+                                <img src="${FotoUrl}" 
+                                     alt="Logo"
+                                     class="rounded-circle"
+                                     style="width: 40px; height: 40px; object-fit: cover; border: 1px solid ${colorBorde}; padding: 2px; background: #fff;"
+                                     onerror="this.src='/Imagenes/images.png';"> 
+                            </div>
+                            <div "line-height: 1.2;">
+                                <span class="font-weight-bold text-dark" style="font-size: 1em;">
+                                    ${data}
+                                </span>
+                                <br/>
+                                <small class="text-muted">Nro CI: ${row.CiUsuario}</small>
+                            </div>
+                        </div>
+                    `;
+                }
+            },
+            { "data": "Correo", "className": "align-middle" },
+            { "data": "NombreRol", "className": "align-middle" },
+            {
+                "data": "Estado", "className": "text-center align-middle", "render": function (data) {
+                    if (data === true)
+                        return '<span class="badge badge-primary">Activo</span>';
+                    else
+                        return '<span class="badge badge-danger">No Activo</span>';
+                }
+            },
+            {
+                "default=ltContent": '<button class="btn btn-primary btn-editar btn-sm mr-2"><i class="fas fa-pencil-alt"></i></button>' +
+                    '<button class="btn btn-info btn-detalle btn-sm"><i class="fas fa-address-book"></i></button>',
+                "orderable": false,
+                "searchable": false,
+                "width": "100px",
+                "className": "text-center align-middle"
+            }
+        ],
+        "order": [[0, "desc"]],
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        }
+    });
+}
+
 
 
 
@@ -214,6 +298,7 @@ function enviarAjaxUsuarios(objeto, base64String) {
             if (response.d.Estado) {
                 $("#mdData").modal("hide");
                 idEditar = 0;
+                listarUsuarios();
             }
         },
         error: function () {
