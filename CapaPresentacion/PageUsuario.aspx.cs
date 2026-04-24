@@ -68,7 +68,9 @@ namespace CapaPresentacion
         [WebMethod]
         public static Respuesta<List<EUsuarios>> ListarUsuarios()
         {
-            return NUsuarios.GetInstance().usp_ListarUsuarios();
+            return NUsuarios.GetInstance().ListarUsuarios();
         }
+       
+
     }
 }

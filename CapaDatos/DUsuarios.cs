@@ -141,7 +141,7 @@ namespace CapaDatos
             return response;
         }
 
-        public Respuesta<List<EUsuarios>> usp_ListarUsuarios()
+        public Respuesta<List<EUsuarios>> ListarUsuarios()
         {
             try
             {
@@ -162,13 +162,14 @@ namespace CapaDatos
                                 rptLista.Add(new EUsuarios
                                 {
                                     IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
+                                    IdRol = Convert.ToInt32(dr["IdRol"]),
                                     NombreUsuario = dr["NombreUsuario"].ToString(),
                                     ApellidosUsuario = dr["ApellidosUsuario"].ToString(),
                                     CiUsuario = dr["CiUsuario"].ToString(),
                                     Correo = dr["Correo"].ToString(),
-                                 
                                     FotoUrl = dr["FotoUrl"].ToString(),
-                                    
+                                    FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"]).ToString("dd/MM/yyyy"),
+                                    NombreRol = dr["NombreRol"].ToString(),
                                     Estado = Convert.ToBoolean(dr["Estado"])
                                 });
                             }
@@ -194,6 +195,8 @@ namespace CapaDatos
             }
         }
     }
+
+
 
 
 

@@ -58,15 +58,15 @@ function listarUsuarios() {
 
     tablaData = $("#tbDatas").DataTable({
         responsive: true,
-        "ajax": {
-            "url": 'PageUsuario.aspx/ListarUsuarios',
-            "type": "POST",
-            "contentType": "application/json; charset=utf-8",
-            "dataType": "json",
-            "data": function (d) {
+        ajax: {
+            url: 'PageUsuario.aspx/ListarUsuarios',
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: function (d) {
                 return JSON.stringify(d);
             },
-            "dataSrc": function (json) {
+            dataSrc: function (json) {
                 if (json.d.Estado) {
                     return json.d.Data;
                 } else {
@@ -74,61 +74,86 @@ function listarUsuarios() {
                 }
             }
         },
-        "columns": [
-            { "data": "IdUsuario", "visible": false, "searchable": false },
-            {
-                //FullName es una propiedad de solo lectura que tiene Nombres y Apellidos
-                "data": "NombreUsuario",
-                "className": "align-middle",
-                "render": function (data, type, row) {
-                    let colorBorde = '#fff';
-                    let FotoUrl = row.FotoUrl || 'Imagenes/sinimagen.png';
+        columns: [
+            { data: "IdUsuario", visible: false, searchable: false },
 
-                    return `
-                        <div class="d-flex align-items-center">
-                            <div class="position-relative mr-3">
-                                <img src="${FotoUrl}" 
-                                     alt="Logo"
-                                     class="rounded-circle"
-                                     style="width: 40px; height: 40px; object-fit: cover; border: 1px solid ${colorBorde}; padding: 2px; background: #fff;"
-                                     onerror="this.src='/Imagenes/images.png';"> 
-                            </div>
-                            <div "line-height: 1.2;">
-                                <span class="font-weight-bold text-dark" style="font-size: 1em;">
-                                    ${data}
-                                </span>
-                                <br/>
-                                <small class="text-muted">Nro CI: ${row.CiUsuario}</small>
-                            </div>
-                        </div>
-                    `;
+            {
+                data: "FotoUrl",
+                className: "text-center align-middle",
+                render: function (data) {
+                    let foto = data && data !== "" ? data : "Imagenes/images.png";
+                    return `<img src="${foto}" alt="Foto" class="rounded-circle" style="width:40px;height:40px;object-fit:cover;" onerror="this.src='Imagenes/images.png';">`;
                 }
             },
-            { "data": "Correo", "className": "align-middle" },
-            { "data": "NombreRol", "className": "align-middle" },
+
             {
-                "data": "Estado", "className": "text-center align-middle", "render": function (data) {
-                    if (data === true)
-                        return '<span class="badge badge-primary">Activo</span>';
-                    else
-                        return '<span class="badge badge-danger">No Activo</span>';
+                data: null,
+                className: "align-middle",
+                render: function (data, type, row) {
+                    return `${row.NombreUsuario} ${row.ApellidosUsuario}`;
                 }
             },
+
+            { data: "CiUsuario", className: "align-middle" },
+
+            { data: "Correo", className: "align-middle" },
+
             {
-                "default=ltContent": '<button class="btn btn-primary btn-editar btn-sm mr-2"><i class="fas fa-pencil-alt"></i></button>' +
+                data: "Estado",
+                className: "text-center align-middle",
+                render: function (data) {
+                    return data
+                        ? '<span class="badge badge-primary">Activo</span>'
+                        : '<span class="badge badge-danger">No Activo</span>';
+                }
+            },
+
+            {
+                defaultContent:
+                    '<button class="btn btn-primary btn-editar btn-sm mr-2"><i class="fas fa-pencil-alt"></i></button>' +
                     '<button class="btn btn-info btn-detalle btn-sm"><i class="fas fa-address-book"></i></button>',
-                "orderable": false,
-                "searchable": false,
-                "width": "100px",
-                "className": "text-center align-middle"
+                orderable: false,
+                searchable: false,
+                width: "100px",
+                className: "text-center align-middle"
             }
         ],
-        "order": [[0, "desc"]],
-        "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        order: [[0, "desc"]],
+        language: {
+            url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
         }
     });
 }
+
+$('#tbDatas tbody').on('click', '.btn-editar', function () {
+
+    let data = tablaData.row($(this).closest('tr')).data();
+
+    idEditar = data.IdUsuario;
+
+    // llenar el modal
+    $("#txtNombres").val(data.NombreUsuario);
+    $("#txtApellidos").val(data.ApellidosUsuario);
+    $("#txtCorreo").val(data.Correo);
+    $("#txtNroci").val(data.CiUsuario);
+    $("#cboRol").val(data.IdRol);
+    $("#cboEstado").val(data.Estado ? 1 : 0);
+
+    $('#imgDirectReg').attr('src', data.FotoUrl || "Imagenes/images.png");
+
+    $("#cboEstado").prop("disabled", false);
+
+    $("#myModalLabel").text("Editar Usuario");
+
+    $("#mdData").modal("show");
+});
+
+$('#tbDatas tbody').on('click', '.btn-detalle', function () {
+
+    let data = tablaData.row($(this).closest('tr')).data();
+
+    alert("Usuario: " + data.NombreUsuario + "\nCorreo: " + data.Correo);
+});
 
 
 
@@ -309,6 +334,7 @@ function enviarAjaxUsuarios(objeto, base64String) {
             habilitarBoton();
         }
     });
+ 
 }
 
 

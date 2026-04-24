@@ -17,5 +17,9 @@ namespace CapaEntidad.Entidades
         public string Contrasena { get; set; }
         public string FotoUrl { get; set; }
         public bool Estado { get; set; }
+        public string FechaRegistro { get; set; }
+        public string NombreRol { get; set; }
+
+     
     }
 }

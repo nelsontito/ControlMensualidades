@@ -36,13 +36,11 @@ namespace CapaNegocio
             return DUsuarios.GetInstance().GuardarOrEditUsuarios(objeto);
         }
 
-        public Respuesta<List<EUsuarios>> usp_ListarUsuarios()
+        public Respuesta<List<EUsuarios>> ListarUsuarios()
         {
-            return DUsuarios.GetInstance().usp_ListarUsuarios();
+            return DUsuarios.GetInstance().ListarUsuarios();
         }
-
     }
 }
-
 
 
