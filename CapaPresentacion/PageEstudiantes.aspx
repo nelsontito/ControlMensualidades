@@ -23,131 +23,135 @@
 </asp:Content>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="body" runat="server">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header bg-primary py-2 px-4">
-                    <h3 class="card-title m-0"><i class="fas fa-user-friends mr-2"></i>Estudiantes Emilianos</h3>
-                </div>
-                <div class="card-body">
+  
 
-
-                    <div class="form-row align-items-end mb-3">
-
-                        <div class="form-group col-sm-8">
-                            <label for="cboUnidadEdGe">Seleccione CARRERA</label>
-                            <select class="form-control form-control-sm form-new" id="cboUnidadEdGe">
-                            </select>
-                        </div>
-
-                        <div class="form-group col-sm-4">
-                            <button type="button" id="btnNuevo" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle mr-2"></i>Nuevo Registro</button>
-                        </div>
-                       
-
-                    <div class="row justify-content-center">
-                        <div class="col-lg-10 col-sm-12 col-12">
-                            <table class="table table-sm table-striped table-bordered" id="tbData" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>IdCarrera</th>
-                                        <th>IdSemestre</th>
-                                        <th>NombreEstudiante</th>
-                                        <th>ApellidosEstudiante</th>
-                                        <th>CiEstudiante</th>
-                                        <th>Codigo</th>
-                                        <th>Telefono</th>
-                                        <th>FotoEstudianteUrl</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-
-                        </div>
+   <div class="row">
+       <div class="col-lg-12">
+           <div class="card">
+               <div class="card-header bg-primary py-2 px-4">
+                   <h3 class="card-title m-0"><i class="fas fa-user-friends mr-2"></i>Estudiantes Emilianos</h3>
+               </div>
+               <div class="card-body">
+                   <div class="form-row align-items-end mb-3">
+                       <div class="form-group col-sm-12 text-center">
+                           <button type="button" id="btnNuevo" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle mr-2"></i>Nuevo Registro</button>
+                       </div>
                     </div>
-                </div>
-            </div>
-        </div>
-       <div class="modal fade" id="mdData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title m-0" id="myModalLabel">Estudiantes</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-8">
+                   <div class="row justify-content-center">
+                       <div class="col-lg-10 col-sm-12 col-12">
+                           <table class="table table-sm table-striped table-bordered" id="tbData" cellspacing="0" width="100%">
+                               <thead>
+                                   <tr>
+                                       <th>Grado</th>
+                                       <th>Carrera</th>
+                                       <th>Semestre</th>
+                                       <th>NombreEstudiante</th>
+                                       <th>ApellidosEstudiante</th>
+                                       <th>CiEstudiante</th>
+                                       <th>Codigo</th>
+                                       <th>Telefono</th>
+                                       <th>FotoEstudianteUrl</th>
+                                       <th>Acciones</th>
+                                   </tr>
+                               </thead>
+                               <tbody></tbody>
+                           </table>
 
-                        <div class="form-row">
-                            <div class="form-group col-sm-6">
-                                <label for="cboCarrera">Semestre</label>
-                                <select class="form-control form-control-sm" id="cboCarrera">
-                                </select>
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="cboSemestre">Semestre</label>
-                                <select class="form-control form-control-sm" id="cboSemestre">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-
-                            <div class="form-group col-sm-4">
-                                <label for="txtNombre">Nombre</label>
-                                <input type="text" class="form-control input-sm model form-new" id="txtNombres" name="Nombres">
-                            </div>
-                            <div class="form-group col-sm-4">
-                                <label for="txtApellidos">Apellidos</label>
-                                <input type="text" class="form-control input-sm model form-new" id="txtApellidos" name="Apellidos">
-                            </div>
-                        <div class="form-group col-sm-4">
-                            <label for="txtNro CI">Nro CI</label>
-                            <input type="text" class="form-control input-sm model" id="txtNroCI" name="Nro CI">
-                        </div>
-                        </div>
-                        <div class="form-row">
-                   
-                            <div class="form-group col-sm-6">
-                                <label for="txtCodigo">Codigo</label>
-                                <input type="text" class="form-control input-sm model" id="txtCodigo" name="Codigo">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="txtTelefono">Telefono</label>
-                                <input type="text" class="form-control input-sm model" id="txtTelefono" name="Telefono">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-sm-3">
-                                <label for="cboEstado">Estado</label>
-                                <select class="form-control" id="cboEstado">
-                                    <option value="1">Activo</option>
-                                    <option value="0">No Activo</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-sm-9">
-                                <label for="txtApelocs">Seleccione Foto</label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="txtFotoUr" accept="image/*">
-                                    <label class="custom-file-label" for="txtFotoUr">Ningún archivo seleccionado</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-row h-100 d-flex align-items-center justify-content-center">
-                            <div class="form-group col-sm-12 text-center">
-                                <img id="imgDirectReg" src="Imagenes/images.png" alt="Foto usuario" class="rounded-circle est-perfil">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cerrar</button>
- <button id="btnGuardarCambios" type="button" class="btn btn-sm btn-primary">Guardar Cambios</button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
     </div>
+    
+    
+    <div class="modal fade" id="mdData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h4 class="modal-title m-0" id="myModalLabel">Estudiantes</h4>
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+           </div>
+           <div class="modal-body">
+               <div class="row">
+                   <div class="col-lg-8">
+
+                       <div class="form-row">
+                           <div class="form-group col-sm-4">
+                               <label for="cboGradoAcademico">Grado Academico</label>
+                               <select class="form-control form-control-sm" id="cboGradoAcademico">
+                               </select>
+                           </div>
+                           <div class="form-group col-sm-4">
+                               <label for="cboCarrera">Carrera</label>
+                               <select class="form-control form-control-sm" id="cboCarrera">
+                               </select>
+                           </div>
+                           <div class="form-group col-sm-4">
+                               <label for="cboSemestre">Semestre</label>
+                               <select class="form-control form-control-sm" id="cboSemestre">
+                               </select>
+                           </div>
+                       </div>
+                       <div class="form-row">
+
+                           <div class="form-group col-sm-4">
+                               <label for="txtNombre">Nombre</label>
+                               <input type="text" class="form-control input-sm model form-new" id="txtNombres" name="Nombres">
+                           </div>
+                           <div class="form-group col-sm-4">
+                               <label for="txtApellidos">Apellidos</label>
+                               <input type="text" class="form-control input-sm model form-new" id="txtApellidos" name="Apellidos">
+                           </div>
+                       <div class="form-group col-sm-4">
+                           <label for="txtNro CI">Nro CI</label>
+                           <input type="text" class="form-control input-sm model" id="txtNroCI" name="Nro CI">
+                       </div>
+                       </div>
+                       <div class="form-row">
+                  
+                           <div class="form-group col-sm-6">
+                               <label for="txtCodigo">Codigo</label>
+                               <input type="text" class="form-control input-sm model" id="txtCodigo" name="Codigo">
+                           </div>
+                           <div class="form-group col-sm-6">
+                               <label for="txtTelefono">Telefono</label>
+                               <input type="text" class="form-control input-sm model" id="txtTelefono" name="Telefono">
+                           </div>
+                       </div>
+                       <div class="form-row">
+                           <div class="form-group col-sm-3">
+                               <label for="cboEstado">Estado</label>
+                               <select class="form-control" id="cboEstado">
+                                   <option value="1">Activo</option>
+                                   <option value="0">No Activo</option>
+                               </select>
+                           </div>
+                           <div class="form-group col-sm-9">
+                               <label for="txtApelocs">Seleccione Foto</label>
+                               <div class="custom-file">
+                                   <input type="file" class="custom-file-input" id="txtFotoUr" accept="image/*">
+                                   <label class="custom-file-label" for="txtFotoUr">Ningún archivo seleccionado</label>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-lg-4">
+                       <div class="form-row h-100 d-flex align-items-center justify-content-center">
+                           <div class="form-group col-sm-12 text-center">
+                               <img id="imgDirectReg" src="Imagenes/images.png" alt="Foto usuario" class="rounded-circle est-perfil">
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cerrar</button>
+<button id="btnGuardarCambios" type="button" class="btn btn-sm btn-primary">Guardar Cambios</button>
+   </div>
+</div>
+</div>
+</div>
 
 
 

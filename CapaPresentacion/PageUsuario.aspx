@@ -85,7 +85,7 @@
                                     <input type="text" class="form-control input-sm model" id="txtNroci" name="Nro ci">
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label for="cboRol">Rol</label>
+                                    <label for="cbo Rol">Rol</label>
                                     <select class="form-control form-control-sm" id="cboRol">
                                     </select>
                                 </div>
